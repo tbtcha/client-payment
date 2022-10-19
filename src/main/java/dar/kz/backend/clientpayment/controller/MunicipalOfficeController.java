@@ -1,9 +1,7 @@
 package dar.kz.backend.clientpayment.controller;
 
-import dar.kz.backend.clientpayment.model.MunicipalOfficeRequest;
-import dar.kz.backend.clientpayment.model.MunicipalOfficeResponse;
-import dar.kz.backend.clientpayment.model.MunicipalTypesRequest;
-import dar.kz.backend.clientpayment.model.MunicipalTypesResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import dar.kz.backend.clientpayment.model.*;
 import dar.kz.backend.clientpayment.service.MunicipalOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +16,7 @@ public class MunicipalOfficeController {
     MunicipalOfficeService officeService;
 
     @PostMapping("/office")
-    public MunicipalOfficeResponse createOffice(@RequestBody MunicipalOfficeRequest officeRequest){
+    public MunicipalOfficeResponse createOffice(@RequestBody MunicipalOfficeRequest officeRequest) throws JsonProcessingException {
         return officeService.createMunicipalOffice(officeRequest);
     }
 
@@ -27,13 +25,20 @@ public class MunicipalOfficeController {
         return officeService.createMunicipalType(typesRequest);
     }
 
-    @GetMapping("/{id}")
-    public Page<MunicipalOfficeResponse> getOffices(@PathVariable String id, Pageable pageable){
-        return officeService.getMunicipalOfficesByClientId(id, pageable);
+    @GetMapping("/office/{id}")
+    public Page<MunicipalResponse> getOffices(@PathVariable String id, Pageable pageable){
+        Page<MunicipalResponse> municipalResponse =officeService.getMunicipalOfficesByClientId(id, pageable);
+
+        return municipalResponse;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/types/{id}")
     public MunicipalTypesResponse getType(@PathVariable String id){
         return officeService.getMunicipalTypeByTypeId(id);
+    }
+
+    @GetMapping("/types")
+    public Page<MunicipalTypesResponse> getAllTypes(Pageable pageable){
+        return officeService.getAllTypes(pageable);
     }
 }

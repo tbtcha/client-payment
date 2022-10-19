@@ -19,23 +19,23 @@ public class MunicipalOfficeEntity {
 
     @Id
     @Field(type = FieldType.Keyword)
-    private String OfficeId;
+    private String officeId;
 
     @Field(type = FieldType.Keyword)
-    private String TypeId;
+    private String typeId;
 
     @Field(type = FieldType.Keyword)
-    private String ClientId;
+    private String clientId;
 
     @Field(type = FieldType.Text)
-    private String Status;
+    private String status;
 
     @Field(type = FieldType.Integer)
-    private int Price;
+    private int price;
 
     @Field(type = FieldType.Date)
-    private Date CreatedDate;
+    private Date createdDate;
 
     @Field(type = FieldType.Date)
-    private Date PaymentDate;
+    private Date paymentDate;
 }

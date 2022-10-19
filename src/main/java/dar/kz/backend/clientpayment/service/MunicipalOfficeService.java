@@ -1,17 +1,17 @@
 package dar.kz.backend.clientpayment.service;
 
-import dar.kz.backend.clientpayment.model.MunicipalOfficeRequest;
-import dar.kz.backend.clientpayment.model.MunicipalOfficeResponse;
-import dar.kz.backend.clientpayment.model.MunicipalTypesRequest;
-import dar.kz.backend.clientpayment.model.MunicipalTypesResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import dar.kz.backend.clientpayment.model.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
 
 public interface MunicipalOfficeService {
-    Page<MunicipalOfficeResponse> getMunicipalOfficesByClientId(String clientId, Pageable pageable);
+    Page<MunicipalResponse> getMunicipalOfficesByClientId(String clientId, Pageable pageable);
     MunicipalTypesResponse getMunicipalTypeByTypeId(String typeId);
-    MunicipalOfficeResponse createMunicipalOffice(MunicipalOfficeRequest municipalOfficeRequest);
+    MunicipalOfficeResponse createMunicipalOffice(MunicipalOfficeRequest municipalOfficeRequest) throws JsonProcessingException;
     MunicipalTypesResponse createMunicipalType(MunicipalTypesRequest municipalTypesRequest);
+
+    Page<MunicipalTypesResponse> getAllTypes(Pageable pageable);
 }

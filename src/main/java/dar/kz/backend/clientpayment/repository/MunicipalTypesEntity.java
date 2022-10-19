@@ -15,11 +15,11 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class MunicipalTypesEntity {
     @Id
     @Field(type = FieldType.Keyword)
-    private String TypesId;
+    private String typeId;
 
     @Field(type = FieldType.Text)
-    private String TypeName;
+    private String typeName;
 
     @Field(type = FieldType.Text)
-    private String CompanyName;
+    private String companyName;
 }
